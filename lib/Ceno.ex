@@ -16,7 +16,6 @@ defmodule Ceno do
   def spawn_children(collection, func) do
     map collection, fn element -> spawn(__MODULE__, :child, [element, func, self]) end
   end
-
   def child(element, func, parent) do
     send parent, {self, func.(element)}
   end
